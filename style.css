@@ -26,7 +26,7 @@ body::before {
 }
 
 .container {
-    width: 80%;
+    width: 110%;
     min-height: 50vh;
     display: flex;
     align-items: center;
@@ -53,7 +53,7 @@ body::before {
 }
 
 .container__texto {
-    margin: 12px 0;
+    margin: 05px 0;
     display: flex;
     flex-direction: column;
     
@@ -66,7 +66,18 @@ body::before {
     margin-top: 20px;     /* afasta um pouco de cima */
 }
 .container__texto-azul {
-    color: #1875E8;
+    color: #020b8b;
+    display: block;
+
+}
+
+.container__texto-vermelho {
+    color: #df0101;
+    display: block;
+
+}
+.container__texto-branco {
+    color: #ffffff;
     display: block;
 
 }
@@ -155,4 +166,54 @@ button:disabled {
     h1 {
         font-size: 50px;
     }
+}
+
+/* Centraliza o container do select */
+.select-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 10px auto;
+  width: 100%;
+}
+
+/* Rótulo acima do select */
+.select-label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #0e0d0d;
+  margin-bottom: 05px;
+}
+
+/* Estilo do select em si */
+.select-input {
+  width: 250px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #4A90E2;
+  border-radius: 100px;
+  background-color: #f9f9f9;
+  color: #0c0c0c;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(74, 144, 226, 0.1);
+}
+
+/* Efeito ao passar o mouse */
+.select-input:hover {
+  border-color: #240cf7;
+  box-shadow: 0 0 15px rgba(106, 17, 203, 0.2);
+}
+
+/* Efeito ao focar (quando o usuário clica no select) */
+.select-input:focus {
+  border-color: #2575FC;
+  box-shadow: 0 0 20px rgba(37, 117, 252, 0.3);
+  background-color: #fff;
+}
+
+.hidden {
+  display: none;
 }

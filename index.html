@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sorteador de Números</title>
+  <title>Sorteador de Números ou Nomes</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,8 +11,22 @@
     <div class="container__conteudo">
       <div class="container__informacoes">
         <div class="container__texto">
-          <h1>Sorteador <span class="container__texto-azul">de números</span></h1>
+          <h1>
+          Sorteador de 
+          <span class="container__texto-azul">números</span>
+          <span class="container__texto-branco">ou</span>
+          <span class="container__texto-vermelho">nomes!</span>
+          </h1>
 
+         <div class="select-container" id="tipoSorteioContainer">
+        <label for="tipoSorteio" class="select-label">Escolha o tipo de sorteio:</label>
+        <select id="tipoSorteio" class="select-input">
+          <option value="">Selecione</option>
+          <option value="numeros">Sorteio de Números</option>
+          <option value="nomes">Sorteio de Nomes</option>
+        </select>
+        </div>
+          <div id="sorteioNumeros" class="hidden">
           <div class="container__campo">
             <label class="texto__paragrafo">Quantidade de números</label>
             <input class="container__input" id="quantidade" type="number" min="0">
@@ -27,9 +41,8 @@
             <label class="texto__paragrafo">Até o número</label>
             <input class="container__input" id="ate" type="number" min="1">
           </div>
-        </div>
-        
-        <div class="container__botoes">
+
+          <div class="container__botoes">
           <button onclick="sortear()" id="btn-sortear" class="container__botao">Sortear</button>
           <button onclick="reiniciar()" id="btn-reiniciar" class="container__botao-desabilitado">Reiniciar</button>
         </div>
@@ -37,6 +50,14 @@
         <div class="container__texto" id="resultado">
           <label class="texto__resultado">Números sorteados: nenhum até agora</label>
         </div>
+        
+        </div>
+
+        
+      </div>
+      </div>
+      <div id="voltarContainer" class="hidden">
+       <button onclick="voltar()" class="container__botao">Voltar</button>
       </div>
 
       <img src="./img/ia.png" alt="Uma pessoa com capacete de astronauta" class="container__imagem-pessoa" />

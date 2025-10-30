@@ -74,3 +74,27 @@ function reiniciar(){
     alterarStatusBotao();
 
 }
+
+document.getElementById("tipoSorteio").addEventListener("change", function () {
+  const tipo = this.value;
+  const sorteioNumeros = document.getElementById("sorteioNumeros");
+  const tipoSorteioContainer = document.getElementById("tipoSorteioContainer");
+  const voltarContainer = document.getElementById("voltarContainer");
+
+  if (tipo === "numeros") {
+    sorteioNumeros.classList.remove("hidden");
+    tipoSorteioContainer.classList.add("hidden");
+    voltarContainer.classList.remove("hidden");
+  } else if (tipo === "nomes") {
+    alert("Função de sorteio de nomes ainda será adicionada!");
+    this.value = ""; // volta ao estado inicial
+  }
+});
+
+function voltar() {
+  document.getElementById("sorteioNumeros").classList.add("hidden");
+  document.getElementById("voltarContainer").classList.add("hidden");
+  document.getElementById("tipoSorteioContainer").classList.remove("hidden");
+  document.getElementById("tipoSorteio").value = "";
+}
+
