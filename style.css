@@ -26,7 +26,7 @@ body::before {
 }
 
 .container {
-    width: 110%;
+    width: 80%;
     min-height: 50vh;
     display: flex;
     align-items: center;
@@ -216,4 +216,16 @@ button:disabled {
 
 .hidden {
   display: none;
+}
+
+textarea.container__input {
+  width: 100%;
+  height: 100px;
+  resize: none;
+  color: #1875E8;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 1rem;
+  border-radius: 16px;
+  border: none;
 }

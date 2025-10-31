@@ -50,8 +50,28 @@
         <div class="container__texto" id="resultado">
           <label class="texto__resultado">Números sorteados: nenhum até agora</label>
         </div>
-        
         </div>
+        <!-- CAMPOS DO SORTEIO DE NOMES -->
+        <div id="sorteioNomes" class="hidden">
+          <div class="container__campo">
+            <label class="texto__paragrafo">Digite os nomes (separe por vírgula):</label>
+            <textarea class="container__input" id="listaNomes" rows="4" placeholder="Exemplo: Ana, João, Carla"></textarea>
+          </div>
+
+          <div class="container__campo">
+            <label class="texto__paragrafo">Quantidade de nomes a sortear:</label>
+            <input class="container__input" id="quantidadeNomes" type="number" min="1">
+          </div>
+
+          <div class="container__botoes">
+            <button onclick="sortearNomes()" id="btn-sortear-nomes" class="container__botao">Sortear</button>
+            <button onclick="reiniciarNomes()" id="btn-reiniciar-nomes" class="container__botao-desabilitado">Reiniciar</button>
+          </div>
+
+            <div class="container__texto" id="resultadoNomes">
+              <label class="texto__resultado">Nomes sorteados: nenhum até agora</label>
+            </div>
+          </div>
 
         
       </div>
