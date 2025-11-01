@@ -59,7 +59,7 @@ body::before {
     
 }
 .texto__resultado {
-    color: #ffcc00;       /* cor do texto (amarelo exemplo) */
+    color: #ffcc00;       /* cor do texto  */
     font-size: 30px;      /* tamanho maior */
     font-weight: 700;     /* mais grosso/negrito */
     text-align: center;   /* centraliza */
@@ -228,4 +228,59 @@ textarea.container__input {
   padding: 1rem;
   border-radius: 16px;
   border: none;
+}
+
+/* Responsividade para tablets e celulares */
+@media screen and (max-width: 1024px) {
+  .container {
+    width: 90%;
+    border-radius: 100px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container__conteudo {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container__informacoes {
+    padding: 2rem;
+  }
+
+  h1 {
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .container__campo {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container__input {
+    width: 90%;
+    height: 60px;
+  }
+
+  .container__botoes {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .select-container {
+    width: 100%;
+  }
+
+  .select-input {
+    width: 80%;
+  }
+
+  .container__imagem-pessoa {
+   /* display: none; */
+   display: block;
+    width: 80%;
+    max-width: 100px;
+    margin: 0 auto;
+  }
 }
