@@ -7,10 +7,11 @@
 
 body {
     background: linear-gradient(#1354A5 0%, #041832 33.33%, #041832 66.67%, #01080E 100%);
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    padding: 3rem 0;
 }
 
 body::before {
@@ -26,18 +27,16 @@ body::before {
 }
 
 .container {
-    width: 110%;
+    width: 90%; 
+    max-width: 1100px; 
     min-height: 50vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 200px;
+    border-radius: 100px; 
     border: 1px solid #1875E8;
     box-shadow: 4px 4px 20px 0px rgba(1, 8, 14, 0.15);
     background-image: url("img/Ruido.png");
     background-size: 100% 100%;
     position: relative;
-    overflow: hidden;
+    overflow: hidden; 
 }
 
 .container__conteudo {
@@ -53,9 +52,12 @@ body::before {
 }
 
 .container__texto {
-    margin: 05px 0;
+    margin: 05px auto;
     display: flex;
     flex-direction: column;
+    width: 80%;
+   
+    
     
 }
 .texto__resultado {
@@ -149,9 +151,12 @@ h1 {
 }
 
 .container__imagem-pessoa {
-    max-width: 100%;
+    max-width: 30%;
     height: auto;
-    margin-top: 2rem;
+    margin-top: 2rem;  
+    margin-left: auto;
+    margin-right: auto;
+    
 }
 
 button:disabled {
@@ -232,55 +237,83 @@ textarea.container__input {
 
 /* Responsividade para tablets e celulares */
 @media screen and (max-width: 1024px) {
-  .container {
-    width: 90%;
-    border-radius: 100px;
-    flex-direction: column;
-    align-items: center;
-  }
+    .container {
+        width: 90%;
+        border-radius: 60px; /* Raio menor fica melhor no celular */
+        flex-direction: column;
+        align-items: center;
+    }
 
-  .container__conteudo {
-    flex-direction: column;
-    align-items: center;
-  }
+    .container__conteudo {
+        flex-direction: column;
+        align-items: center;
+    }
 
-  .container__informacoes {
-    padding: 2rem;
-  }
+    .container__informacoes {
+        padding: 1.5rem; /* Um pouco menos de padding no celular */
+    }
 
-  h1 {
-    font-size: 32px;
-    text-align: center;
-  }
+    h1 {
+        font-size: 32px;
+        text-align: center;
+    }
 
-  .container__campo {
-    flex-direction: column;
-    align-items: center;
-  }
+    .container__campo {
+        flex-direction: column;
+        align-items: center;
+        width: 100%; /* Garantir que o campo ocupe a largura */
+    }
+    
+    /* * AJUSTES PRINCIPAIS ABAIXO 
+    */
 
-  .container__input {
-    width: 90%;
-    height: 60px;
-  }
+    /* 1. Diminuir o texto dos labels (Ex: "Do número") */
+    .texto__paragrafo {
+        font-size: 20px; /* 32px era muito grande */
+        text-align: center;
+        margin-bottom: 8px; /* Espaço entre o label e o input */
+    }
 
-  .container__botoes {
-    flex-direction: column;
-    width: 100%;
-  }
+    /* 2. Ajustar os inputs (números) */
+    .container__input {
+        width: 100%; /* Ocupar 100% do campo */
+        height: 50px;
+        padding: 1rem; /* IMPORTANTE: Reduzir o padding interno */
+        font-size: 18px; /* Fonte menor dentro do input */
+    }
 
-  .select-container {
-    width: 100%;
-  }
+    /* 3. Ajustar o textarea (nomes) */
+    textarea.container__input {
+        height: 100px; /* Altura específica para o textarea */
+        padding: 1rem;
+        font-size: 16px;
+    }
 
-  .select-input {
-    width: 80%;
-  }
 
-  .container__imagem-pessoa {
-   /* display: none; */
-   display: block;
-    width: 80%;
-    max-width: 100px;
-    margin: 0 auto;
-  }
+    .container__botoes {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .select-container {
+        width: 100%;
+    }
+
+    .select-input {
+        width: 100%; /* Fazer o select ocupar todo o espaço */
+    }
+
+    /* 4. Ajustar a imagem do astronauta */
+    .container__imagem-pessoa {
+        display: block;
+        width: 80%;
+        max-width: 150px; /* Aumentei um pouco de 100px */
+        margin: 1rem auto 2rem auto; /* Centraliza e dá espaço */
+    }
+
+    /* 5. Estilizar o botão "Voltar" (que adicionamos antes) */
+    #voltarContainer .container__botao {
+        width: 100%; /* Fazer o botão voltar ocupar 100% */
+    }
 }
+
