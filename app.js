@@ -1,9 +1,20 @@
+tipoSorteio();
+
 function sortear(){
     let quantidade = parseInt(document.getElementById('quantidade').value);
     let de = parseInt(document.getElementById('de').value);
     let ate = parseInt(document.getElementById('ate').value);
 
-    
+     if (!quantidade || quantidade <= 0) {
+      if(quantidade == 0){
+        alert(`Você digitou ${quantidade}! Digite a quantidade de números que deseja sortear.`);
+    return;
+      }else{
+         alert("Campo Quantidade de números vazio!");
+    return;
+      }
+   
+  }
 
     if(de > ate){
             
@@ -15,6 +26,7 @@ function sortear(){
     }
    
 
+    
     let sorteados = [];
     let numero;
 
@@ -46,6 +58,8 @@ function sortear(){
     resultado.innerHTML = `<label class="texto__resultado">Números sorteados: ${sorteados.join(", ")}</label>`
     alterarStatusBotao();
     
+    document.getElementById("btn-pdf-numeros").classList.remove("hidden");
+
 
 }
 
@@ -59,6 +73,7 @@ function alterarStatusBotao(){
     if(botao.classList.contains('container__botao-desabilitado')){
         botao.classList.remove('container__botao-desabilitado');
         botao.classList.add('container__botao');
+        
 
     }else{
         botao.classList.remove('container__botao');
@@ -71,11 +86,13 @@ function reiniciar(){
     document.getElementById('de').value = '';
     document.getElementById('ate').value = '';
     document.getElementById('resultado').innerHTML = `<label class="texto__resultado">Números sorteados: nenhum até agora</label>`;
+    document.getElementById("btn-pdf-numeros").classList.add("hidden");
     alterarStatusBotao();
 
 }
 
-document.getElementById("tipoSorteio").addEventListener("change", function () {
+  function tipoSorteio(){
+  document.getElementById("tipoSorteio").addEventListener("change", function () {
   const tipo = this.value;
   const tipoSorteioContainer = document.getElementById("tipoSorteioContainer");
   const sorteioNumeros = document.getElementById("sorteioNumeros");
@@ -96,13 +113,19 @@ document.getElementById("tipoSorteio").addEventListener("change", function () {
     voltarContainer.classList.remove("hidden");
   }
 });
+  }
 
-function voltar() {
+
+ 
+  function voltar() {
+  reiniciar();
+  reiniciarNomes();
   document.getElementById("sorteioNumeros").classList.add("hidden");
   document.getElementById("sorteioNomes").classList.add("hidden");
   document.getElementById("voltarContainer").classList.add("hidden");
   document.getElementById("tipoSorteioContainer").classList.remove("hidden");
   document.getElementById("tipoSorteio").value = "";
+  
 }
 
 function sortearNomes() {
@@ -110,15 +133,21 @@ function sortearNomes() {
   let quantidade = parseInt(document.getElementById("quantidadeNomes").value);
   let resultadoDiv = document.getElementById("resultadoNomes");
 
+  
+  
   if (texto === "") {
-    alert("Digite pelo menos um nome!");
+    alert("Campo dos nomes não foi preenchido!");
     return;
   }
 
   let nomes = texto.split(",").map(nome => nome.trim()).filter(nome => nome !== "");
 
-  if (quantidade > nomes.length) {
-    alert("A quantidade a sortear não pode ser maior que o total de nomes.");
+  if (quantidade >= nomes.length) {
+    alert("A quantidade a sortear não pode ser maior ou igual que o total de nomes.");
+    return;
+  }
+   if (!quantidade || quantidade <= 0 ) {
+    alert("A quantidade a sortear não pode ser vazia ou menor que 1.");
     return;
   }
 
@@ -133,12 +162,15 @@ function sortearNomes() {
 
   resultadoDiv.innerHTML = `<label class="texto__resultado">Nomes sorteados: ${sorteados.join(", ")}</label>`;
   alterarStatusBotaoNomes();
+  document.getElementById("btn-pdf-nomes").classList.remove("hidden");
+
 }
 
 function reiniciarNomes() {
   document.getElementById("listaNomes").value = "";
   document.getElementById("quantidadeNomes").value = "";
   document.getElementById("resultadoNomes").innerHTML = `<label class="texto__resultado">Nomes sorteados: nenhum até agora</label>`;
+  document.getElementById("btn-pdf-nomes").classList.add("hidden");
   alterarStatusBotaoNomes();
 }
 
@@ -151,4 +183,51 @@ function alterarStatusBotaoNomes() {
     botao.classList.remove("container__botao");
     botao.classList.add("container__botao-desabilitado");
   }
+}
+
+async function gerarPDFNumeros() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  // Captura o resultado atual
+  const resultadoTexto = document.getElementById("resultado").innerText;
+
+  // Cabeçalho do PDF
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(20);
+  doc.text("Resultado do Sorteio de Números", 20, 20);
+
+  // Corpo do PDF
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(14);
+  doc.text(resultadoTexto, 20, 40);
+
+  // Rodapé com data e hora
+  const data = new Date().toLocaleString("pt-BR");
+  doc.setFontSize(10);
+  doc.text(`Gerado em: ${data}`, 20, 280);
+
+  // Baixa o arquivo
+  doc.save("sorteio_numeros.pdf");
+}
+
+async function gerarPDFNomes() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const resultadoTexto = document.getElementById("resultadoNomes").innerText;
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(20);
+  doc.text("Resultado do Sorteio de Nomes", 20, 20);
+
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(14);
+  doc.text(resultadoTexto, 20, 40);
+
+  const data = new Date().toLocaleString("pt-BR");
+  doc.setFontSize(10);
+  doc.text(`Gerado em: ${data}`, 20, 280);
+
+  doc.save("sorteio_nomes.pdf");
 }

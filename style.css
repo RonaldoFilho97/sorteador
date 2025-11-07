@@ -317,3 +317,13 @@ textarea.container__input {
     }
 }
 
+#btn-pdf-numeros, #btn-pdf-nomes {
+  margin-top: 20px;
+  background-color: #FFB300;
+  color: #000;
+  font-weight: 700;
+}
+
+#btn-pdf-numeros:hover, #btn-pdf-nomes:hover {
+  background-color: #FFD54F;
+}

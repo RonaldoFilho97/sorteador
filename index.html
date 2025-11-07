@@ -50,6 +50,7 @@
         <div class="container__texto" id="resultado">
           <label class="texto__resultado">Números sorteados: nenhum até agora</label>
         </div>
+        <button id="btn-pdf-numeros" class="container__botao hidden" onclick="gerarPDFNumeros()">Gerar PDF</button>
         </div>
         <!-- CAMPOS DO SORTEIO DE NOMES -->
         <div id="sorteioNomes" class="hidden">
@@ -67,12 +68,12 @@
             <button onclick="sortearNomes()" id="btn-sortear-nomes" class="container__botao">Sortear</button>
             <button onclick="reiniciarNomes()" id="btn-reiniciar-nomes" class="container__botao-desabilitado">Reiniciar</button>
           </div>
-
             <div class="container__texto" id="resultadoNomes">
               <label class="texto__resultado">Nomes sorteados: nenhum até agora</label>
             </div>
+            <button id="btn-pdf-nomes" class="container__botao hidden" onclick="gerarPDFNumeros()">Gerar PDF</button>
           </div>
-            <div id="voltarContainer" class="hidden">
+          <div id="voltarContainer" class="hidden">
             <button onclick="voltar()" class="container__botao">Voltar</button>
           </div>
         
@@ -83,6 +84,7 @@
       
     </div>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <script src="app.js" defer></script>
 </body>
