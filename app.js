@@ -189,45 +189,93 @@ async function gerarPDFNumeros() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
 
-  // Captura o resultado atual
+  
   const resultadoTexto = document.getElementById("resultado").innerText;
 
-  // Cabeçalho do PDF
+  
+  const maxWidth = 170; 
+    const startX = 20; 
+    let startY = 40;   
+    const lineHeight = 7;
+  
+  const splitText = doc.splitTextToSize(resultadoTexto, maxWidth);
+  
   doc.setFont("helvetica", "bold");
   doc.setFontSize(20);
-  doc.text("Resultado do Sorteio de Números", 20, 20);
-
-  // Corpo do PDF
+  doc.text("Resultado do Sorteio de números", startX, 20);
+  
   doc.setFont("helvetica", "normal");
   doc.setFontSize(14);
-  doc.text(resultadoTexto, 20, 40);
 
-  // Rodapé com data e hora
-  const data = new Date().toLocaleString("pt-BR");
-  doc.setFontSize(10);
-  doc.text(`Gerado em: ${data}`, 20, 280);
+  for (let i = 0; i < splitText.length; i++) {
+      
+        if (startY + (i * lineHeight) > 280) {
+            doc.addPage();
+            
+            startY = 20;
+        }
 
-  // Baixa o arquivo
-  doc.save("sorteio_numeros.pdf");
+        
+        doc.text(splitText[i], startX, startY + (i * lineHeight));
+    }
+
+    const data = new Date().toLocaleString("pt-BR");
+    doc.setFontSize(10);
+    
+    let finalY = (startY + (splitText.length * lineHeight)) + 5;
+    if (finalY > 280) finalY = 280; 
+    doc.text(`Gerado em: ${data}`, startX, finalY);
+
+    
+    doc.save("sorteio_numeros.pdf");
+  
 }
 
 async function gerarPDFNomes() {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
 
-  const resultadoTexto = document.getElementById("resultadoNomes").innerText;
+    const resultadoTexto = document.getElementById("resultadoNomes").innerText;
+    
+    
+    const maxWidth = 170; 
+    const startX = 20; 
+    let startY = 40;   
+    const lineHeight = 7; 
+    
+    
+    const splitText = doc.splitTextToSize(resultadoTexto, maxWidth);
+    
+    
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(20);
+    doc.text("Resultado do Sorteio de Nomes", startX, 20);
 
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(20);
-  doc.text("Resultado do Sorteio de Nomes", 20, 20);
+    
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(14);
+    
+    
+    for (let i = 0; i < splitText.length; i++) {
+        
+        if (startY + (i * lineHeight) > 280) {
+            doc.addPage();
+            
+            startY = 20;
+        }
 
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(14);
-  doc.text(resultadoTexto, 20, 40);
+        
+        doc.text(splitText[i], startX, startY + (i * lineHeight));
+    }
+    
+    
+    const data = new Date().toLocaleString("pt-BR");
+    doc.setFontSize(10);
+    
+    let finalY = (startY + (splitText.length * lineHeight)) + 5;
+    if (finalY > 280) finalY = 280; 
+    doc.text(`Gerado em: ${data}`, startX, finalY);
 
-  const data = new Date().toLocaleString("pt-BR");
-  doc.setFontSize(10);
-  doc.text(`Gerado em: ${data}`, 20, 280);
-
-  doc.save("sorteio_nomes.pdf");
+    
+    doc.save("sorteio_nomes.pdf");
 }
